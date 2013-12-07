@@ -1,67 +1,39 @@
-public class Deck {
-	final int NUM_CARDS = 52;
-	final int NUM_CARD_LOCATIONS = 3 				// 1)in the deck (not dealt or burned), 2)dealt to a player, or 3)discarded to the burn pile
-	private Card[][] cardDeck = new Card[NUM_CARDS][NUM_CARD_LOCATIONS];
-	private Stack[]
-	
-	//default constructor
-	public Deck() {
-		
-	}
-	
-	/** shuffle. 
-	*	@param unshuffledDeck is an ArrayList containing all cards in the deck
-	* 	@return Queue of random unsorted cards
-	*/
-	public Queue shuffle(ArrayList unshuffledDeck) {
-	
-	}
-	
-	/** shuffle (overloaded to return known card stackorder). 
-	*	@param integer to determine which preset stack to return
-	*	@return stack of cards in known order for debugging)
-	*/
-	public Stack shuffle(int preset) {
-	
-	}
-	
-	/** draw top card from undealt stack 
-	*	@return  Card from top of stack
-	*/
-	public Card drawCard() {
-	
-	}
+/** The Deck class facilitates the use of a full 52 card deck
+*
+*/
 
-	/** dealCards 
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
+import java.util.*;
+public class Deck {
+	final int CARDS_PER_DECK = 52;
+	public ArrayList<Card> unshuffledDeck = new ArrayList<Card>();
+
+	/** Default Constructor
+	*	Automatically seeds the deck with 52 Cards in order
 	*/
-	public Hand dealCards(int numPlayers, int cardsPerPlayer) {
-		
+	public Deck() {
+		for (int i = 0; i < CARDS_PER_DECK; i++) {
+			Card c1 = new Card(i);
+			unshuffledDeck.add(c1);
+		}
 	}
 	
-	/** createHands to be dealt by Deal Cards
-	*	@param numPlayers is the integer number of players in the game 
-	*	@param cardsPerPlayer is the initial number of cards in a hand
+	/**getSize
+	*@return int number of objects held in the deck
 	*/
-	private createHands(int numPlayers, int cardsPerPlayer) {
-	
+	public int getSize() {
+		return unshuffledDeck.size();
 	}
 	
-	/** cutDeck. 
-	*	@param place to cut deck (1-52)
-	*	set new 'head' on deck stack but maintain card order*/
-	public void cutDeck(int newStart) {
-	
-	}
-	
-	/** trackCards
-	*	track cards so duplicates cannot be dealt from draw pile
-	*	@param card is the card being  moved to new location
-	*	@param location is the place where the card was moved (hand,burn,draw
+	/**dealCard -
+	* @param int i - the index of the card to be dealt/returned
+	* @return Card - the card object being returned
 	*/
-	private void trackCards(Card card, String location) {
-		
+	public Card dealCard(int i) {
+		Card c1 = unshuffledDeck.get(i);
+		unshuffledDeck.remove(i);
+		return c1;
 	}
-	
-	//need to add ability to use multiple decks
-	//need to add array of dealt vs burned vs drawpile cards
 }
